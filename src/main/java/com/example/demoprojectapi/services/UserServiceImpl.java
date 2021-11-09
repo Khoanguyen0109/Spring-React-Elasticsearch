@@ -18,7 +18,8 @@ public class UserServiceImpl  implements  UserServices{
 
     @Override
     public User validateUser(String email, String password) throws EtAuthException {
-        return null;
+        if (email!=null) email = email.toLowerCase();
+        return userRespository.getUser(email, password);
     }
 
     @Override

@@ -1,4 +1,4 @@
-
+\connect "test-spring";
 
 create table users (
 id integer primary key not null,
