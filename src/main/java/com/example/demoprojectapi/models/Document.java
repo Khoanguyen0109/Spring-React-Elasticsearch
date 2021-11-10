@@ -14,6 +14,9 @@ public class Document {
     private  String name;
     private long size;
 
+    public Document() {
+    }
+
     private String type;
     @Column(name ="upload_date")
     private Date uploadTime;
