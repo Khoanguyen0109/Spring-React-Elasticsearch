@@ -8,11 +8,14 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Date;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -24,6 +27,7 @@ class DemoProjectApiApplicationTests {
 	private TestEntityManager entityManager;
 
 	@Test
+	@Rollback(value = false)
 	void testInsertDocument() throws IOException {
 		try {
 			String pathname = "/Users/khoanguyen/Downloads/thong-bao-ve-viec-tsnn--kltn-dot-2-2021-sv-(20210604_040931_122).doc";
@@ -35,6 +39,10 @@ class DemoProjectApiApplicationTests {
 			doc.setContnet(bytes);
 			long sizeFile = bytes.length;
 			doc.setSize(sizeFile);
+			doc.setUploadTime(new Date());
+			System.out.println(doc.getSize());
+			System.out.println(doc.getContnet());
+
 
 			Document docSave = documentRepository.save(doc);
 
