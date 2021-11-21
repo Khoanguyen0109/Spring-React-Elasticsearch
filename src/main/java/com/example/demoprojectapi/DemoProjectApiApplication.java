@@ -16,13 +16,16 @@ public class DemoProjectApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoProjectApiApplication.class, args);
 	}
-
+//
 //	@Bean
 //	public FilterRegistrationBean<AuthFilter> filterFilterRegistrationBean (){
+//		System.out.println("ddddd");
+//
 //		FilterRegistrationBean<AuthFilter> registrationBean = new FilterRegistrationBean<>();
 //		AuthFilter authFilter = new AuthFilter();
 //		registrationBean.setFilter(authFilter);
-////		registrationBean.addUrlPatterns("/api/documents/*");
+//		registrationBean.setOrder(Integer.MAX_VALUE);
+//		registrationBean.addUrlPatterns("/api/documents/*");
 //		return registrationBean;
 //	}
 

@@ -34,19 +34,31 @@ Document {
     @Column(name = "upload_date")
     private Date uploadTime;
 
+    @Field(type = FieldType.Integer)
+    private Integer userId;
+
     @Field(type = FieldType.Binary)
     private byte[] contnet;
 
     public Document() {
     }
 
-    public Document(long id, String name, long size, String type, Date uploadTime, byte[] contnet) {
+    public Document(long id, String name, long size, String type, Date uploadTime, Integer userId, byte[] contnet) {
         this.id = id;
         this.name = name;
         this.size = size;
         this.type = type;
         this.uploadTime = uploadTime;
+        this.userId = userId;
         this.contnet = contnet;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public long getId() {

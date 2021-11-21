@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.*;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/documents")
 public class DocumentResource {
@@ -35,7 +36,9 @@ public class DocumentResource {
     }
 
     @PostMapping("upload")
-    public ResponseEntity<Object> uploadFile (@RequestParam("document") MultipartFile file) throws IOException {
+    public ResponseEntity<Object> uploadFile ( HttpServletRequest request ,@RequestParam("document") MultipartFile file) throws IOException {
+        Integer userId = (Integer) request.getAttribute("userId");
+        System.out.println((userId));
         String fileName = StringUtils.cleanPath( file.getOriginalFilename());
         String mimeType = file.getContentType();
         String[] allowMineType = new String[]{ "application/msword",
@@ -46,7 +49,6 @@ public class DocumentResource {
                 "application/x-msworks-wp",
                 "zz-application/zz-winassoc-wps"};
 
-        System.out.println(mimeType);
         boolean allow = Arrays.stream(allowMineType)
                 .anyMatch(x -> x.equals(mimeType));
         if(allow == false){
@@ -55,7 +57,6 @@ public class DocumentResource {
             return new ResponseEntity<>(map,HttpStatus.BAD_REQUEST);
         }
 
-        System.out.println(documentRepository.findByName(fileName));
         if(documentRepository.findByName(fileName).size() >0){
             Map<String, String> map = new HashMap<>();
             map.put("message", "name already exits");

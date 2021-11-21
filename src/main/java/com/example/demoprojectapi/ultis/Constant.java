@@ -1,4 +1,4 @@
-package com.example.demoprojectapi;
+package com.example.demoprojectapi.ultis;
 
 public class Constant {
 
