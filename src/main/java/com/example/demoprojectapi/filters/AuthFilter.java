@@ -13,7 +13,6 @@ import com.example.demoprojectapi.Constants;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.filter.GenericFilterBean;
-import org.yaml.snakeyaml.scanner.Constant;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

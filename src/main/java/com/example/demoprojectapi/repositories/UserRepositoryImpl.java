@@ -1,6 +1,6 @@
 package com.example.demoprojectapi.repositories;
 
-import com.example.demoprojectapi.exceptions.EtAuthException;
+import com.example.demoprojectapi.exceptions.AuthException;
 import com.example.demoprojectapi.models.User;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -26,7 +26,7 @@ public class UserRepositoryImpl implements  UserRespository{
     @Autowired
     JdbcTemplate jdbcTemplate;
     @Override
-    public Integer createUser(String firstName, String lastName, String email, String password) throws EtAuthException {
+    public Integer createUser(String firstName, String lastName, String email, String password) throws AuthException {
         try {
             String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt(10));
             System.out.println(firstName);
@@ -42,19 +42,19 @@ public class UserRepositoryImpl implements  UserRespository{
             },keyHolder);
             return (Integer) keyHolder.getKeys().get("id");
         }catch (Exception e){
-            throw  new EtAuthException("Failed to create");
+            throw  new AuthException("Failed to create");
         }
     }
 
     @Override
-    public User getUser(String email, String password) throws EtAuthException {
+    public User getUser(String email, String password) throws AuthException {
         try {
             User user = jdbcTemplate.queryForObject(SQL_FIND_BY_EMAIL, new Object[]{email}, userRowMapper);
             if(!BCrypt.checkpw(password, user.getPassword()))
-                throw new EtAuthException("Invalid email/password");
+                throw new AuthException("Invalid email/password");
             return user;
         } catch (EmptyResultDataAccessException e) {
-            throw new EtAuthException("Invalid email/password");
+            throw new AuthException("Invalid email/password");
         }
     }
 

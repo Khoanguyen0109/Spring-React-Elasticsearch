@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Spring test client</h2>
+    <script>
+        fetch('http://localhost:8080/api/users/3/documents',{
+            headers:{'Authorization':'Bearer eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2Mzc3NDQwNzksImV4cCI6MTYzNzc1MTI3OSwidXNlcklkIjozLCJlbWFpbCI6ImFiY0B4eXouY29tIiwiZmlyc3ROYW1lIjoiYWJjIiwibGFzdE5hbWUiOiJ4eXoifQ.gDBsLMx_HFl5iwtJVkITTDp7cVnCddIRCULBo_OkzRM'}
+        })
+        .then(res => res.json())
+        .then(res => console.log(res))
+        .catch(err => console.error(err));
+
+    </script>
+</body>
+</html>

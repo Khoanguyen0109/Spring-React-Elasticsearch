@@ -1,34 +1,33 @@
 package com.example.demoprojectapi.models;
 
-import java.time.OffsetDateTime;
+import java.sql.Timestamp;
 
 public class Document {
-    private Integer docId;
-    private Integer userId;
+    private int id;
+    private int user_id;
     private String name;
     private String content;
     private String type;
-    private OffsetDateTime upload_date;
-    public Document(Integer docId, Integer userId, String name, String content, String type,
-            OffsetDateTime upload_date) {
-        this.docId = docId;
-        this.userId = userId;
+    private Timestamp upload_date;
+    public Document(int id, int user_id, String name, String content, String type, Timestamp upload_date) {
+        this.id = id;
+        this.user_id = user_id;
         this.name = name;
         this.content = content;
         this.type = type;
         this.upload_date = upload_date;
     }
-    public Integer getDocId() {
-        return docId;
+    public int getId() {
+        return id;
     }
-    public void setDocId(Integer docId) {
-        this.docId = docId;
+    public void setId(int id) {
+        this.id = id;
     }
-    public Integer getUserId() {
-        return userId;
+    public int getUser_id() {
+        return user_id;
     }
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
     public String getName() {
         return name;
@@ -48,10 +47,11 @@ public class Document {
     public void setType(String type) {
         this.type = type;
     }
-    public OffsetDateTime getUpload_date() {
+    public Timestamp getUpload_date() {
         return upload_date;
     }
-    public void setUpload_date(OffsetDateTime upload_date) {
+    public void setUpload_date(Timestamp upload_date) {
         this.upload_date = upload_date;
-    } 
+    }
+    
 }
